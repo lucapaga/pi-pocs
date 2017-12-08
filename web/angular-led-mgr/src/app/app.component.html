@@ -1,19 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<mat-sidenav-container>
-  <mat-sidenav>Start</mat-sidenav>
-  <mat-sidenav-content>
-    <div style="text-align:center">
-      <h1 class="mdc-typography--display1">
-        LED Manager
-      </h1>
-    </div>
-    <p>
-      <mat-button-toggle value="left" (change)="toggleRedLED($event)">
-        Red LED
-      </mat-button-toggle>
-      <mat-button-toggle value="left" (change)="toggleGreenLED($event)">
-        Green LED
-      </mat-button-toggle>
-    </p>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<mat-toolbar  color="primary">
+  LED Manager
+</mat-toolbar>
+  <h1 class="mdc-typography--body1">
+    Click buttons to switch on and off your LEDs
+  </h1>
+  <p>
+    <mat-button-toggle value="left" (change)="toggleRedLED($event)">
+      Red LED
+    </mat-button-toggle>
+    <mat-button-toggle value="left" (change)="toggleGreenLED($event)">
+      Green LED
+    </mat-button-toggle>
+  </p>
