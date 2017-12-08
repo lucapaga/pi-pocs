@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { MatButtonToggleChange } from '@angular/material/button-toggle';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ import { MatButtonToggleChange } from '@angular/material/button-toggle';
 export class AppComponent { // implements OnInit {
   title = 'Pi LED Manager';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
 
   toggleRedLED(theEvent : MatButtonToggleChange) {
     console.log("Spiking command:", theEvent);
@@ -22,6 +23,9 @@ export class AppComponent { // implements OnInit {
         // Read the result field from the JSON response.
         //this.results = data['results'];
         console.log("That's it: ", data);
+        this.snackBar.open("RED LED has been switched ON", "UNDO", { duration: 2000 });/*.onAction(() => {
+          console.log("UNDOING RED ON")
+        });*/
       });
     } else {
       this.http.get('/pi/red/off').subscribe(data => {

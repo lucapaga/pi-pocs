@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatButtonModule, MatCheckboxModule, MatToolbarModule } from '@angular/material';
+import { MatButtonModule, MatCheckboxModule, MatToolbarModule, MatSnackBarModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -22,12 +22,12 @@ import { AppComponent } from './app.component';
     BrowserModule, HttpClientModule,
     MatButtonModule, MatCheckboxModule,
     MatButtonToggleModule, MatIconModule,
-    MatSidenavModule, MatToolbarModule
+    MatSidenavModule, MatToolbarModule, MatSnackBarModule
   ],
   exports: [
     MatButtonModule, MatCheckboxModule,
     MatButtonToggleModule, MatIconModule,
-    MatSidenavModule, MatToolbarModule
+    MatSidenavModule, MatToolbarModule, MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
