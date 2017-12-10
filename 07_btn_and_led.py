@@ -15,7 +15,7 @@ red_led = LED(17)
 button = Button(23)
 button.when_pressed = on_button_pressed
 
-while(true):
+while(True):
     i = 0
 
 #green_led.on()
