@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   }
 
   toggleLEDs() {
-    this.http.get('/pitoggle').subscribe(data => {
+    this.http.get('/pitoggle/all').subscribe(data => {
       console.log("All LEDs are now INVERTED: ", data);
       this.snackBar.open("All LEDs are now INVERTED");
     });

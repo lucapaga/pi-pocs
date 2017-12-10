@@ -35,7 +35,7 @@ def piall(led_state):
  return pistate()
 
 
-@app.route('/pitoggle')
+@app.route('/pitoggle/all')
 def pitoggle():
  red_led.toggle()
  green_led.toggle()
