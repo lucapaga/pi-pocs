@@ -10,10 +10,35 @@ import {MatSnackBar} from '@angular/material';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent { // implements OnInit {
+export class AppComponent implements OnInit {
   title = 'Pi LED Manager';
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
+
+  ngOnInit(): void {
+
+  }
+
+  switchAllOff() {
+    this.http.get('/piall/off').subscribe(data => {
+      console.log("All LEDs are now OFF: ", data);
+      this.snackBar.open("All LEDs are now OFF");
+    });
+  }
+
+  toggleLEDs() {
+    this.http.get('/pitoggle').subscribe(data => {
+      console.log("All LEDs are now INVERTED: ", data);
+      this.snackBar.open("All LEDs are now INVERTED");
+    });
+  }
+
+  switchAllOn() {
+    this.http.get('/piall/on').subscribe(data => {
+      console.log("All LEDs are now ON: ", data);
+      this.snackBar.open("All LEDs are now ON");
+    });
+  }
 
   toggleRedLED(theEvent : MatButtonToggleChange) {
     console.log("Spiking command:", theEvent);

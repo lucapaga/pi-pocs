@@ -6,10 +6,15 @@
     Click buttons to switch on and off your LEDs
   </h1>
   <p>
-    <mat-button-toggle value="left" (change)="toggleRedLED($event)">
+    <mat-button-toggle value="red" (change)="toggleRedLED($event)">
       Red LED
     </mat-button-toggle>
-    <mat-button-toggle value="left" (change)="toggleGreenLED($event)">
+    <mat-button-toggle value="green" (change)="toggleGreenLED($event)">
       Green LED
     </mat-button-toggle>
+  </p>
+  <p>
+    <button mat-raised-button (click)="switchAllOff()">Spegni Tutti</button>
+    <button mat-raised-button (click)="toggleLEDs()">Inverti Tutti</button>
+    <button mat-raised-button (click)="switchAllOn()">Accendi Tutti</button> 
   </p>
