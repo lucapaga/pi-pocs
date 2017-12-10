@@ -7,12 +7,12 @@ def on_button_pressed(button):
      print("LED is ON, switching OFF!")
      red_led.off()
      green_led.off()
-     bz.beep(on_time=.2, off_time=.1, n=3, background=False)
+     bz.beep(on_time=.5, off_time=.2, n=3, background=False)
  else:
      print("LED is OFF, switching ON!")
      green_led.on()
      red_led.on()
-     bz.beep(on_time=.2, off_time=.1, n=2, background=False)
+     bz.beep(on_time=.5, off_time=.2, n=2, background=False)
 
 green_led = LED(18)
 red_led = LED(17)
