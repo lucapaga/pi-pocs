@@ -9,6 +9,12 @@ GREEN_LED_NR=18
 RED_LED_NR=17
 BUTTON_NR=23
 
+green_led = LED(GREEN_LED_NR)
+red_led = LED(RED_LED_NR)
+button = Button(BUTTON_NR)
+
+app = Flask(__name__)
+
 @app.route('/')
 def index():
     return "Up'n'Running!"
@@ -111,12 +117,7 @@ def on_button_pressed(button):
      red_led.on()
      #bz.beep()
 
-green_led = LED(GREEN_LED_NR)
-red_led = LED(RED_LED_NR)
-button = Button(BUTTON_NR)
 button.when_pressed = on_button_pressed
-
-app = Flask(__name__)
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')
