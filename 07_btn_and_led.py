@@ -3,11 +3,12 @@ from time import sleep
 
 def on_button_pressed(button):
  print("Pulsante premuto!")
- green_led.on()
- red_led.on()
- sleep(5)
- red_led.off()
- green_led.off()
+ if green_led.is_lit:
+     green_led.on()
+     red_led.on()
+ else:
+     red_led.off()
+     green_led.off()
 
 green_led = LED(18)
 red_led = LED(17)
