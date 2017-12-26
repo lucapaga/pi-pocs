@@ -109,6 +109,7 @@ def run_logic(args):
 
     try:
         while True:
+            print("Sleeping now")
             time.sleep(10)
     except KeyboardInterrupt:
         print("================================================")
