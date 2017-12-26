@@ -63,7 +63,7 @@ def on_pubsub_message(message):
                 print("Unkown ACTION: {}".format(aCommand.action))
 
         message.ack()
-    except e:
+    except Exception as e:
         print("Errore: {}".format(e))
 
 def run_logic(args):
