@@ -53,18 +53,21 @@ def on_pubsub_message(message):
     if theLED != None:
         if aCommand.action == "light-on":
             print("Switching the LED on")
-            theLED.on()
+            if EMULATE != True:
+                theLED.on()
         elif aCommand.action == "light-off":
             print("Switching the LED off")
-            theLED.off()
+            if EMULATE != True:
+                theLED.off()
         else:
             print("Unkown ACTION: {}".format(aCommand.action))
 
 
 def run_logic(args):
-    green_led = LED(args.green_led_pin)
-    red_led = LED(args.red_led_pin)
-    button = Button(args.push_button_pin)
+    if EMULATE != True:
+        green_led = LED(args.green_led_pin)
+        red_led = LED(args.red_led_pin)
+        button = Button(args.push_button_pin)
 
     subscriber = pubsub_v1.SubscriberClient()
     subscription_path = None
@@ -113,6 +116,8 @@ def run_logic(args):
 green_led = None
 red_led = None
 button = None
+
+EMULATE = True
 
 
 if __name__ == '__main__':
