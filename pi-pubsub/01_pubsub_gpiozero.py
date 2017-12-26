@@ -103,7 +103,7 @@ def run_logic(args):
 
     try:
         while True:
-            sleep(10)
+            time.sleep(10)
     except KeyboardInterrupt:
         print("================================================")
         print(" Stopping deamon ...")
