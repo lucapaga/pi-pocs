@@ -101,6 +101,8 @@ def run_logic(args):
         callback=on_pubsub_message,
         flow_control=flow_control)
 
+    print("Going Live ...")
+
     try:
         while True:
             time.sleep(10)
