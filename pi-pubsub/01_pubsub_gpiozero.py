@@ -75,16 +75,20 @@ def run_logic(args):
 
     if args.commands_subscription_name == None or args.commands_subscription_name == "":
         subscription_name="{}_subscr_01".format(args.commands_topic_name)
+        print("Creating new subscription with name '{}' on topic '{}'".format(subscription_name, args.commands_topic_name))
         subscription_path = create_subscription(
             args.project,
             args.commands_topic_name,
             subscription_name,
             subscriber)
+        print("Subscription path is '{}'".format(subscription_path))
     else:
         subscription_name = args.commands_subscription_name
+        print("Binding subscription '{}'".format(subscription_name))
         subscription_path = subscriber.subscription_path(
             args.project,
             subscription_name)
+        print("Subscription path is '{}'".format(subscription_path))
 
     print("================================================")
     print(" Creating PUB/SUB subsription for 'COMANDS' ...")
