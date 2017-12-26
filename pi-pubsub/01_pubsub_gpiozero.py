@@ -36,33 +36,35 @@ def publish_message(project, topic_name, message, client):
 
 
 def on_pubsub_message(message):
-    print('Received COMMAND: {}'.format(message))
-    aCommand = message.data
+    try:
+        print('Received COMMAND: {}'.format(message))
+        aCommand = message.data
 
-    theLED = None
-    if aCommand.led_color.lower() == "green":
-        theLED = green_led
-        print("Working on GREEN led")
-    elif aCommand.led_color.lower() == "red":
-        theLED = red_led
-        print("Working on GREEN led")
-    else:
-        print("Unkown LED color: {}".format(aCommand.led_color))
-
-    if theLED != None:
-        if aCommand.action == "light-on":
-            print("Switching the LED on")
-            if EMULATE != True:
-                theLED.on()
-        elif aCommand.action == "light-off":
-            print("Switching the LED off")
-            if EMULATE != True:
-                theLED.off()
+        theLED = None
+        if aCommand.led_color.lower() == "green":
+            theLED = green_led
+            print("Working on GREEN led")
+        elif aCommand.led_color.lower() == "red":
+            theLED = red_led
+            print("Working on GREEN led")
         else:
-            print("Unkown ACTION: {}".format(aCommand.action))
+            print("Unkown LED color: {}".format(aCommand.led_color))
 
-    message.ack()
+        if theLED != None:
+            if aCommand.action == "light-on":
+                print("Switching the LED on")
+                if EMULATE != True:
+                    theLED.on()
+            elif aCommand.action == "light-off":
+                print("Switching the LED off")
+                if EMULATE != True:
+                    theLED.off()
+            else:
+                print("Unkown ACTION: {}".format(aCommand.action))
 
+        message.ack()
+    except e:
+        print("Errore: {}".format(e))
 
 def run_logic(args):
     if EMULATE != True:
@@ -74,6 +76,7 @@ def run_logic(args):
     subscription_path = None
     subscription_name = None
 
+    subscription_created = False
     if args.commands_subscription_name == None or args.commands_subscription_name == "":
         subscription_name="{}_subscr_01".format(args.commands_topic_name)
         print("Creating new subscription with name '{}' on topic '{}'".format(subscription_name, args.commands_topic_name))
@@ -82,6 +85,7 @@ def run_logic(args):
             args.commands_topic_name,
             subscription_name,
             subscriber)
+        subscription_created = True
         print("Subscription path is '{}'".format(subscription_path))
     else:
         subscription_name = args.commands_subscription_name
@@ -113,12 +117,13 @@ def run_logic(args):
             print("Sleeping now")
             time.sleep(10)
     except KeyboardInterrupt:
-        print("================================================")
-        print(" Stopping deamon ...")
-        print("------------------------------------------------")
-        print("  REMOVING SUBSCRIPTION: '{}'...".format(subscription_name))
-        delete_subscription(args.project, subscription_name, subscriber)
-        print("================================================")
+        if subscription_created:
+            print("================================================")
+            print(" Stopping deamon ...")
+            print("------------------------------------------------")
+            print("  REMOVING SUBSCRIPTION: '{}'...".format(subscription_name))
+            delete_subscription(args.project, subscription_name, subscriber)
+            print("================================================")
 
 
 green_led = None
