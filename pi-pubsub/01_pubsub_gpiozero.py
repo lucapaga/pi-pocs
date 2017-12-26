@@ -37,7 +37,6 @@ def publish_message(project, topic_name, message, client):
 
 def on_pubsub_message(message):
     print('Received COMMAND: {}'.format(message))
-    message.ack()
     aCommand = message.data
 
     theLED = None
@@ -61,6 +60,8 @@ def on_pubsub_message(message):
                 theLED.off()
         else:
             print("Unkown ACTION: {}".format(aCommand.action))
+
+    message.ack()
 
 
 def run_logic(args):
@@ -99,11 +100,11 @@ def run_logic(args):
     print("    FLOW CONTROL: {}".format(args.max_batch_size))
     print("================================================")
 
-    flow_control = pubsub_v1.types.FlowControl(max_messages=args.max_batch_size)
+    #flow_control = pubsub_v1.types.FlowControl(max_messages=args.max_batch_size)
     subscriber.subscribe(
         subscription_path,
-        callback=on_pubsub_message,
-        flow_control=flow_control)
+        callback=on_pubsub_message)#,
+#        flow_control=flow_control)
 
     print("Going Live ...")
 
