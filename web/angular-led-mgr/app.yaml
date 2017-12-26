@@ -1,2 +1,3 @@
+service: led-mgr-nginx
 runtime: custom
 env: flex
