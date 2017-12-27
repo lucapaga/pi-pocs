@@ -45,7 +45,6 @@ def on_pubsub_message(message):
         print(" - LED COLOR: {}".format(aCommand["led_color"]))
         print(" -    ACTION: {}".format(aCommand["action"]))
 
-
         theLED = None
         if aCommand["led_color"].lower() == "green":
             theLED = green_led
@@ -136,7 +135,9 @@ green_led = None
 red_led = None
 button = None
 
-EMULATE = True
+EMULATE=os.environ.get('EMULATE_GPIO_INTERFACE')
+if EMULATE == None:
+    EMULATE = False
 
 
 if __name__ == '__main__':
