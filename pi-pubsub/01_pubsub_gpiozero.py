@@ -52,7 +52,7 @@ def on_pubsub_message(message):
         elif aCommand["led_color"].lower() == "red":
             theLED = red_led
             print("Working on RED led")
-        elif aCommand["led_color"].lower() == "light_bulb":
+        elif aCommand["led_color"].lower() == "light-bulb":
             theLED = light_bulb
             print("Working on LIGHT BULB")
         else:
