@@ -40,6 +40,7 @@ def on_pubsub_message(message):
     try:
         print('Received COMMAND: {}'.format(message))
         aCommand = JSONDecoder().decode(message.data)
+        print("Serialized version: {}".format(aCommand))
 
         theLED = None
         if aCommand.led_color.lower() == "green":
