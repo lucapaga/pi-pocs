@@ -72,10 +72,14 @@ def on_pubsub_message(message):
         print("Errore: {}".format(e))
 
 def run_logic(args):
+    print("EMULATE='{}'".format(EMULATE))
     if EMULATE != True:
+        print("Production MODE: seting up LEDs ...")
         green_led = LED(args.green_led_pin)
         red_led = LED(args.red_led_pin)
         button = Button(args.push_button_pin)
+    else:
+        print("Emulation MODE: LEDs will be 'None'")
 
     subscriber = pubsub_v1.SubscriberClient()
     subscription_path = None
