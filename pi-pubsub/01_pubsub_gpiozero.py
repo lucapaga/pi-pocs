@@ -39,7 +39,7 @@ def publish_message(project, topic_name, message, client):
 def on_pubsub_message(message):
     try:
         print('Received COMMAND: {}'.format(message))
-        aCommand = JSONDecoder.decode(message.data)
+        aCommand = JSONDecoder().decode(message.data)
 
         theLED = None
         if aCommand.led_color.lower() == "green":
