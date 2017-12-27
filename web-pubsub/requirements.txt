@@ -1,0 +1,3 @@
+Flask==0.12.2
+jsonify==0.5
+google-cloud-pubsub==0.29.4
