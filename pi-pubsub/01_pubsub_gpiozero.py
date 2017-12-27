@@ -43,26 +43,26 @@ def on_pubsub_message(message):
         print("Serialized version: {}".format(aCommand))
 
         theLED = None
-        if aCommand.led_color.lower() == "green":
+        if aCommand["led_color"].lower() == "green":
             theLED = green_led
             print("Working on GREEN led")
-        elif aCommand.led_color.lower() == "red":
+        elif aCommand["led_color"].lower() == "red":
             theLED = red_led
             print("Working on GREEN led")
         else:
-            print("Unkown LED color: {}".format(aCommand.led_color))
+            print("Unkown LED color: {}".format(aCommand["led_color"]))
 
         if theLED != None:
-            if aCommand.action == "light-on":
+            if aCommand["action"] == "light-on":
                 print("Switching the LED on")
                 if EMULATE != True:
                     theLED.on()
-            elif aCommand.action == "light-off":
+            elif aCommand["action"] == "light-off":
                 print("Switching the LED off")
                 if EMULATE != True:
                     theLED.off()
             else:
-                print("Unkown ACTION: {}".format(aCommand.action))
+                print("Unkown ACTION: {}".format(aCommand["action"]))
 
         message.ack()
     except Exception as e:
