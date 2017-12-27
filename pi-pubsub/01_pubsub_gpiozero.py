@@ -135,9 +135,7 @@ green_led = None
 red_led = None
 button = None
 
-EMULATE=os.environ.get('EMULATE_GPIO_INTERFACE')
-if EMULATE == None:
-    EMULATE = False
+EMULATE = False
 
 
 if __name__ == '__main__':
@@ -161,6 +159,11 @@ if __name__ == '__main__':
             required=True,
             help='PUB/SUB TOPIC for STATUS')
     parser.add_argument(
+            '--emulate_gpio',
+            type=bool,
+            default=False,
+            help='To Emulate GPIO when testing outside PI')
+    parser.add_argument(
             '--green_led_pin',
             type=int,
             default=18,
@@ -181,4 +184,5 @@ if __name__ == '__main__':
             default=10,
             help='Number of messagges pulled from PUB/SUB (max)')
     args = parser.parse_args()
+    EMULATE=args.emulate_gpio
     run_logic(args)

@@ -17,7 +17,8 @@ ENV EMULATE_GPIO_INTERFACE=False                                               \
     GCP_PROJECT_NAME=luca-paganelli-formazione                                 \
     GCP_PUBSUB_TOPIC_COMMANDS=gpio_commands_topic                              \
     GCP_PUBSUB_SUBSCRIPTION_COMMANDS=gpio_commands_subscription                \
-    GCP_PUBSUB_TOPIC_STATUS=gpio_status_topic
+    GCP_PUBSUB_TOPIC_STATUS=gpio_status_topic                                  \
+    PI_EMULATE_GPIO=False
 
 #EXPOSE 5000
 CMD ["./run-daemon.sh"]
