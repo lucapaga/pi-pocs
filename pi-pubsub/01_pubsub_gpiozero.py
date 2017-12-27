@@ -42,13 +42,17 @@ def on_pubsub_message(message):
         aCommand = JSONDecoder().decode(message.data)
         print("Serialized version: {}".format(aCommand))
 
+        print(" - LED COLOR: {}".format(aCommand["led_color"]))
+        print(" -    ACTION: {}".format(aCommand["action"]))
+
+
         theLED = None
         if aCommand["led_color"].lower() == "green":
             theLED = green_led
             print("Working on GREEN led")
         elif aCommand["led_color"].lower() == "red":
             theLED = red_led
-            print("Working on GREEN led")
+            print("Working on RED led")
         else:
             print("Unkown LED color: {}".format(aCommand["led_color"]))
 
