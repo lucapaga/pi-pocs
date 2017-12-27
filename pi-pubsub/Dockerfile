@@ -8,7 +8,8 @@ RUN pip install --upgrade gpiozero && \
 
 COPY ./01_pubsub_gpiozero.py /opt/pi-pocs/
 COPY ./sa/pi-pocs-pubsub-sa01-00afc7e81369.json /opt/pi-pocs/
-COPY ./run-daemon.sh /opt/pi-pocs/
+COPY ./run-daemon.sh  /opt/pi-pocs/
+COPY ./sample-pubsub-message.txt /opt/pi-pocs/
 
 WORKDIR /opt/pi-pocs
 

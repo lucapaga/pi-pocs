@@ -52,6 +52,9 @@ def on_pubsub_message(message):
         elif aCommand["led_color"].lower() == "red":
             theLED = red_led
             print("Working on RED led")
+        elif aCommand["led_color"].lower() == "light_bulb":
+            theLED = light_bulb
+            print("Working on LIGHT BULB")
         else:
             print("Unkown LED color: {}".format(aCommand["led_color"]))
 
@@ -76,6 +79,7 @@ def on_pubsub_message(message):
 def run_logic(args):
     global green_led
     global red_led
+    global light_bulb
     global button
 
     print("EMULATE='{}'".format(EMULATE))
@@ -83,6 +87,7 @@ def run_logic(args):
         print("Production MODE: seting up LEDs ...")
         green_led = LED(args.green_led_pin)
         red_led = LED(args.red_led_pin)
+        light_bulb = LED(args.light_bulb_pin)
         button = Button(args.push_button_pin)
     else:
         print("Emulation MODE: LEDs will be 'None'")
@@ -143,6 +148,7 @@ def run_logic(args):
 
 green_led = None
 red_led = None
+light_bulb = None
 button = None
 
 EMULATE = False
@@ -150,7 +156,7 @@ EMULATE = False
 
 if __name__ == '__main__':
     global EMULATE
-    
+
     parser = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter
@@ -185,6 +191,11 @@ if __name__ == '__main__':
             type=int,
             default=17,
             help='GPIO PIN for RED LED')
+    parser.add_argument(
+            '--light_bulb_pin',
+            type=int,
+            default=21,
+            help='GPIO PIN for LIGHT BULB')
     parser.add_argument(
             '--push_button_pin',
             type=int,

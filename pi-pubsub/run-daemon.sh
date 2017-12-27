@@ -16,6 +16,12 @@ echo "     - TOPIC:       ${GCP_PUBSUB_TOPIC_STATUS}"
 echo ""
 echo ""
 
+echo "You can now publish messages to ${GCP_PUBSUB_TOPIC_COMMANDS} topic, e.g.: "
+cat ./sample-pubsub-message.txt
+echo ""
+echo ""
+
+
 if [ "${PI_EMULATE_GPIO}" == "False" ];
 then
   python 01_pubsub_gpiozero.py \
