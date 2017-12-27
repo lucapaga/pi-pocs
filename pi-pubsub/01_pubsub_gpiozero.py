@@ -2,7 +2,7 @@
 import sys, os
 import argparse
 import time
-import json
+from json import JSONDecoder
 
 from google.cloud import pubsub_v1
 #from gpiozero import LED, Button
