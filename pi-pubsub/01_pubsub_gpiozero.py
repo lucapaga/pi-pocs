@@ -189,7 +189,7 @@ if __name__ == '__main__':
             help='Number of messagges pulled from PUB/SUB (max)')
     args = parser.parse_args()
 
-    print("EMULATION FLAG: {}".forma(args.emulate_gpio))
+    print("EMULATION FLAG: {}".format(args.emulate_gpio))
     EMULATE=args.emulate_gpio
 
     run_logic(args)
