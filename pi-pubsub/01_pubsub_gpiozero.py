@@ -74,6 +74,10 @@ def on_pubsub_message(message):
         print("Errore: {}".format(e))
 
 def run_logic(args):
+    global green_led
+    global red_led
+    global button
+
     print("EMULATE='{}'".format(EMULATE))
     if EMULATE != True:
         print("Production MODE: seting up LEDs ...")
@@ -145,6 +149,8 @@ EMULATE = False
 
 
 if __name__ == '__main__':
+    global EMULATE
+    
     parser = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter
