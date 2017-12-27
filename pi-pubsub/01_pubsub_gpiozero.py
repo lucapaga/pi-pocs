@@ -94,7 +94,7 @@ def run_logic(args):
         green_led = LED(args.green_led_pin)
         red_led = LED(args.red_led_pin)
         light_bulb = LED(args.light_bulb_pin)
-        light_bulb.off()
+        light_bulb.on()
         button = Button(args.push_button_pin)
     else:
         print("Emulation MODE: LEDs will be 'None'")
