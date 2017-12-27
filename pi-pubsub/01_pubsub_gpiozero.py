@@ -63,16 +63,16 @@ def on_pubsub_message(message):
                 print("Switching the LED on")
                 if EMULATE != True:
                     if aCommand["led_color"].lower() == "light_bulb":
-                        theLED.on()
-                    else:
                         theLED.off()
+                    else:
+                        theLED.on()
             elif aCommand["action"] == "light-off":
                 print("Switching the LED off")
                 if EMULATE != True:
                     if aCommand["led_color"].lower() == "light_bulb":
-                        theLED.off()
-                    else:
                         theLED.on()
+                    else:
+                        theLED.off()
             else:
                 print("Unkown ACTION: {}".format(aCommand["action"]))
 	else:
