@@ -5,7 +5,7 @@ import time
 from json import JSONDecoder
 
 from google.cloud import pubsub_v1
-#from gpiozero import LED, Button
+from gpiozero import LED, Button
 
 
 def create_subscription(project, topic_name, subscription_name, client):
@@ -66,6 +66,8 @@ def on_pubsub_message(message):
                     theLED.off()
             else:
                 print("Unkown ACTION: {}".format(aCommand["action"]))
+	else:
+	    print("The LED is still NONE! Unable to operate... Ack-ing anyway!")
 
         message.ack()
     except Exception as e:
@@ -113,11 +115,11 @@ def run_logic(args):
     print("    FLOW CONTROL: {}".format(args.max_batch_size))
     print("================================================")
 
-    #flow_control = pubsub_v1.types.FlowControl(max_messages=args.max_batch_size)
+    flow_control = pubsub_v1.types.FlowControl(max_messages=args.max_batch_size)
     subscriber.subscribe(
         subscription_path,
-        callback=on_pubsub_message)#,
-#        flow_control=flow_control)
+        callback=on_pubsub_message,
+        flow_control=flow_control)
 
     print("Going Live ...")
 
@@ -185,7 +187,7 @@ if __name__ == '__main__':
     parser.add_argument(
             '--max_batch_size',
             type=int,
-            default=10,
+            default=3,
             help='Number of messagges pulled from PUB/SUB (max)')
     args = parser.parse_args()
 

@@ -16,7 +16,7 @@ echo "     - TOPIC:       ${GCP_PUBSUB_TOPIC_STATUS}"
 echo ""
 echo ""
 
-if [ "${PI_EMULATE_GPIO}" -eq "False" ];
+if [ "${PI_EMULATE_GPIO}" == "False" ];
 then
   python 01_pubsub_gpiozero.py \
         --project ${GCP_PROJECT_NAME} \
