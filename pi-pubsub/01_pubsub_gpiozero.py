@@ -62,11 +62,17 @@ def on_pubsub_message(message):
             if aCommand["action"] == "light-on":
                 print("Switching the LED on")
                 if EMULATE != True:
-                    theLED.on()
+                    if aCommand["led_color"].lower() == "light_bulb":
+                        theLED.on()
+                    else:
+                        theLED.off()
             elif aCommand["action"] == "light-off":
                 print("Switching the LED off")
                 if EMULATE != True:
-                    theLED.off()
+                    if aCommand["led_color"].lower() == "light_bulb":
+                        theLED.off()
+                    else:
+                        theLED.on()
             else:
                 print("Unkown ACTION: {}".format(aCommand["action"]))
 	else:
@@ -88,6 +94,7 @@ def run_logic(args):
         green_led = LED(args.green_led_pin)
         red_led = LED(args.red_led_pin)
         light_bulb = LED(args.light_bulb_pin)
+        light_bulb.off()
         button = Button(args.push_button_pin)
     else:
         print("Emulation MODE: LEDs will be 'None'")
