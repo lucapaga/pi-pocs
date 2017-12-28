@@ -1,2 +1,2 @@
-export PUBSUB_TOPIC=gpio_commands_topic
+export GCP_PUBSUB_TOPIC_COMMANDS=gpio_commands_topic
 npm start

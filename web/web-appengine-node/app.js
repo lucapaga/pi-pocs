@@ -58,8 +58,9 @@ app.get('/', (req, res) => {
 });
 
 app.get('/piall/:ledState', (req, res) => {
-  led_state = req.params["ledState"];
-  action="light-"
+  const led_state=req.params["ledState"];
+  var action="light-"
+
   if(led_state == "on") {
     action = action + led_state
   } else if(led_state == "off") {
@@ -67,36 +68,37 @@ app.get('/piall/:ledState', (req, res) => {
   } else {
     action = action + "off"
   }
+  console.log("Moving all LEDs/Bulbs to '" + action + "'")
 
   topic.publish({
       data: '{"led_color":"red","action":"' + action + '"}'
     }, (err) => {
       if (err) {
-        next(err);
+        console.warn("Unable to send message (RED LED): ", err);
         return;
       }
-      // res.status(200).send('Message sent');
+      console.log("Message sent: RED LED");
     });
   topic.publish({
       data: '{"led_color":"green","action":"' + action + '"}'
     }, (err) => {
       if (err) {
-        next(err);
+        console.warn("Unable to send message (GREEN LED): ", err);
         return;
       }
-      // res.status(200).send('Message sent');
+      console.log("Message sent: GREEN LED");
     });
   topic.publish({
       data: '{"led_color":"light-bulb","action":"' + action + '"}'
     }, (err) => {
       if (err) {
-        next(err);
+        console.warn("Unable to send message (LIGHT BULB): ", err);
         return;
       }
-      // res.status(200).send('Message sent');
+      console.log("Message sent: LIGHT BULB");
     });
 
-  res.status(200).send('Messages sent');
+  res.status(200).send('All messages sent');
 })
 
 app.post('/', formBodyParser, (req, res, next) => {
