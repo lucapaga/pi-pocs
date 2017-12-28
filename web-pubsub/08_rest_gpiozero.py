@@ -83,7 +83,7 @@ def pistate(red_led_state, green_led_state, light_bulb_state):
 def pi(led_color, led_state):
     publish_message(
         runargs.project, runargs.commands_topic_name,
-        '{"led_color":"{}","action":"light-{}"}'.format(led_color, led_state),
+        '{{"led_color":"{}","action":"light-{}"}}'.format(led_color, led_state),
         pubsub_client)
     return jsonify({'result': 'OK', 'led': { 'color': led_color.lower(), 'state': { 'value': led_state, 'default': 'False'}}})
 
