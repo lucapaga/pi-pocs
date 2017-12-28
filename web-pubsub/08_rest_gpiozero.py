@@ -5,9 +5,11 @@ import sys, os, argparse, time
 from google.cloud import pubsub_v1
 
 
-global pubsub_client = None
-global runargs = None
+global pubsub_client
+global runargs
 
+pubsub_client = None
+runargs = None
 app = Flask(__name__)
 
 
