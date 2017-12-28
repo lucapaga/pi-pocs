@@ -1,3 +1,4 @@
+service: pi-web-pubsub-py-be
 runtime: python
 env: flex
 entrypoint: gunicorn -b :$PORT main:app

@@ -34,6 +34,8 @@ def index():
 
 @app.route('/piall/<led_state>')
 def piall(led_state):
+ print("GCP_PROJECT: '{}'  |  GCP_PUBSUB_TOPIC_COMMANDS: '{}'".format(app.config['PROJECT'], app.config['GCP_PUBSUB_TOPIC_COMMANDS']))
+ print("Publishing Message to PUB/SUB ...")
  if led_state.lower() == "on":
     publish_message(
         app.config['PROJECT'], app.config['GCP_PUBSUB_TOPIC_COMMANDS'],
@@ -61,7 +63,7 @@ def piall(led_state):
         '{"led_color":"light-bulb","action":"light-off"}',
         pubsub_client)
  else:
-    print "Unknown LED STATE (" + led_state + "), defaulting to OFF"
+    #print "Unknown LED STATE (" + led_state + "), defaulting to OFF"
     publish_message(
         app.config['PROJECT'], app.config['GCP_PUBSUB_TOPIC_COMMANDS'],
         '{"led_color":"red","action":"light-off"}',
@@ -74,6 +76,7 @@ def piall(led_state):
         app.config['PROJECT'], app.config['GCP_PUBSUB_TOPIC_COMMANDS'],
         '{"led_color":"light-bulb","action":"light-off"}',
         pubsub_client)
+ print("Message Published to PUB/SUB ...")
  return pistate(led_state, led_state, led_state)
 
 
@@ -103,17 +106,26 @@ def pi(led_color, led_state):
 
 
 def publish_message(project, topic_name, message, client):
-    publisher = client #pubsub_v1.PublisherClient()
+    print("Istantiating PUB/SUB client ...")
+    publisher = pubsub_v1.PublisherClient()
+    print("Client is '{}'".format(publisher))
     topic_path = publisher.topic_path(project, topic_name)
+    print("TOPIC is '{}'".format(topic_path))
 
     data = u'{}'.format(message)
+    print("MESSAGE DATA is '{}'".format(data))
     data = data.encode('utf-8')
-    publisher.publish(topic_path, data=data)
+    print("MESSAGE DATA UTF8 is '{}'".format(data))
 
-    print('Published message: >{}<'.format(message))
+    print("Publishing Message ...")
+    publisher.publish(topic_path, data=data)
+    print("Message Published!")
+
+
+    #print('Published message: >{}<'.format(message))
 
 
 
 if __name__ == '__main__':
-    pubsub_client=pubsub_v1.PublisherClient()
+    #pubsub_client=pubsub_v1.PublisherClient()
     app.run(debug=True, host='127.0.0.1', port=8080)
