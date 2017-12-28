@@ -5,21 +5,6 @@ import sys
 from google.cloud import pubsub_v1
 
 
-app = Flask(__name__)
-
-pubsub_client = None
-runargs = None
-
-def publish_message(project, topic_name, message, client):
-    publisher = client #pubsub_v1.PublisherClient()
-    topic_path = publisher.topic_path(project, topic_name)
-
-    data = u'{}'.format(message)
-    data = data.encode('utf-8')
-    publisher.publish(topic_path, data=data)
-
-    print('Published messages.')
-
 @app.route('/')
 def index():
     return "Up'n'Running!"
@@ -94,6 +79,21 @@ def pi(led_color, led_state):
     return jsonify({'result': 'OK', 'led': { 'color': led_color.lower(), 'state': { 'value': led_state, 'default': 'False'}}})
 
 
+def publish_message(project, topic_name, message, client):
+    publisher = client #pubsub_v1.PublisherClient()
+    topic_path = publisher.topic_path(project, topic_name)
+
+    data = u'{}'.format(message)
+    data = data.encode('utf-8')
+    publisher.publish(topic_path, data=data)
+
+    print('Published messages.')
+
+
+app = Flask(__name__)
+
+pubsub_client = None
+runargs = None
 
 if __name__ == '__main__':
     global pubsub_client
