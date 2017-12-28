@@ -39,7 +39,7 @@ def piall(led_state):
         '{"led_color":"light-bulb","action":"light-off"}',
         pubsub_client)
  else:
-  print "Unknown LED STATE (" + led_state + "), defaulting to OFF"
+    print "Unknown LED STATE (" + led_state + "), defaulting to OFF"
     publish_message(
         runargs.project, runargs.commands_topic_name,
         '{"led_color":"red","action":"light-off"}',
