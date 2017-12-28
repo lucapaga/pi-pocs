@@ -5,8 +5,8 @@ import sys, os, argparse, time
 from google.cloud import pubsub_v1
 
 
-global pubsub_client
-global runargs
+#global pubsub_client
+#global runargs
 
 pubsub_client = None
 runargs = None
@@ -63,7 +63,7 @@ def pitoggle():
 
 #@app.route('/pistate')
 def pistate(red_led_state, green_led_state, light_bulb_state):
- return jsonify({'result': 'OK', 'io_slots': [
+    return jsonify({'result': 'OK', 'io_slots': [
                     { 'position': GREEN_LED_NR, 'state': { 'value': green_led_state}}
                     , { 'position': RED_LED_NR, 'state': { 'value': red_led_state}}]})
 
