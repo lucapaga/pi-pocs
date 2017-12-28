@@ -20,21 +20,21 @@ export class AppComponent implements OnInit {
   }
 
   switchAllOff() {
-    this.http.get('/piall/off').subscribe(data => {
+    this.http.get('https://pi-web-pubsub-py-be-dot-luca-paganelli-formazione.appspot.com/piall/off').subscribe(data => {
       console.log("All LEDs are now OFF: ", data);
       this.snackBar.open("All LEDs are now OFF");
     });
   }
 
   toggleLEDs() {
-    this.http.get('/pitoggle/all').subscribe(data => {
+    this.http.get('https://pi-web-pubsub-py-be-dot-luca-paganelli-formazione.appspot.com/pitoggle/all').subscribe(data => {
       console.log("All LEDs are now INVERTED: ", data);
       this.snackBar.open("All LEDs are now INVERTED");
     });
   }
 
   switchAllOn() {
-    this.http.get('/piall/on').subscribe(data => {
+    this.http.get('https://pi-web-pubsub-py-be-dot-luca-paganelli-formazione.appspot.com/piall/on').subscribe(data => {
       console.log("All LEDs are now ON: ", data);
       this.snackBar.open("All LEDs are now ON");
     });
@@ -66,13 +66,33 @@ export class AppComponent implements OnInit {
     console.log("Spiking command:", theEvent);
 
     if(theEvent.source.checked) {
-      this.http.get('/pi/green/on').subscribe(data => {
+      this.http.get('https://pi-web-pubsub-py-be-dot-luca-paganelli-formazione.appspot.com/pi/green/on').subscribe(data => {
         // Read the result field from the JSON response.
         //this.results = data['results'];
         console.log("That's it: ", data);
       });
     } else {
-      this.http.get('/pi/green/off').subscribe(data => {
+      this.http.get('https://pi-web-pubsub-py-be-dot-luca-paganelli-formazione.appspot.com/pi/green/off').subscribe(data => {
+        // Read the result field from the JSON response.
+        //this.results = data['results'];
+        console.log("That's it: ", data);
+      });
+    }
+
+  }
+
+
+  toggleLightBulb(theEvent : MatButtonToggleChange) {
+    console.log("Spiking command:", theEvent);
+
+    if(theEvent.source.checked) {
+      this.http.get('https://pi-web-pubsub-py-be-dot-luca-paganelli-formazione.appspot.com/pi/light-bulb/on').subscribe(data => {
+        // Read the result field from the JSON response.
+        //this.results = data['results'];
+        console.log("That's it: ", data);
+      });
+    } else {
+      this.http.get('https://pi-web-pubsub-py-be-dot-luca-paganelli-formazione.appspot.com/pi/light-bulb/off').subscribe(data => {
         // Read the result field from the JSON response.
         //this.results = data['results'];
         console.log("That's it: ", data);

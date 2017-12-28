@@ -80,11 +80,21 @@ def piall(led_state):
  return pistate(led_state, led_state, led_state)
 
 
-#@app.route('/pitoggle/all')
+@app.route('/pitoggle/all')
 def pitoggle():
- #red_led.toggle()
- #green_led.toggle()
- return pistate("UNK", "UNK", "UNK")
+    publish_message(
+        app.config['PROJECT'], app.config['GCP_PUBSUB_TOPIC_COMMANDS'],
+        '{"led_color":"red","action":"toggle"}',
+        pubsub_client)
+    publish_message(
+        app.config['PROJECT'], app.config['GCP_PUBSUB_TOPIC_COMMANDS'],
+        '{"led_color":"green","action":"toggle"}',
+        pubsub_client)
+    publish_message(
+        app.config['PROJECT'], app.config['GCP_PUBSUB_TOPIC_COMMANDS'],
+        '{"led_color":"light-bulb","action":"toggle"}',
+        pubsub_client)
+    return pistate("UNK", "UNK", "UNK")
 
 
 #@app.route('/pistate')
