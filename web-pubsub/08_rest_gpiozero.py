@@ -93,9 +93,6 @@ def publish_message(project, topic_name, message, client):
 
 
 if __name__ == '__main__':
-    global pubsub_client
-    global runargs
-
     parser = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter
