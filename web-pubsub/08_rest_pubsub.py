@@ -63,7 +63,7 @@ def piall(led_state):
  return pistate(led_state, led_state, led_state)
 
 
-@app.route('/pitoggle/all')
+#@app.route('/pitoggle/all')
 def pitoggle():
  #red_led.toggle()
  #green_led.toggle()
@@ -96,7 +96,7 @@ def publish_message(project, topic_name, message, client):
     data = data.encode('utf-8')
     publisher.publish(topic_path, data=data)
 
-    print('Published messages.')
+    print('Published message: >{}<'.format(message))
 
 
 
@@ -119,4 +119,4 @@ if __name__ == '__main__':
 
     runargs=parser.parse_args()
     pubsub_client=pubsub_v1.PublisherClient()
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port=8080)

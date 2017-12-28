@@ -14,7 +14,7 @@ echo "     - TOPIC:       ${GCP_PUBSUB_TOPIC_STATUS}"
 echo ""
 echo ""
 
-python 08_rest_gpiozero.py \
+python 08_rest_pubsub.py \
         --project ${GCP_PROJECT_NAME} \
         --commands_topic_name ${GCP_PUBSUB_TOPIC_COMMANDS}
 #        --status_topic_name ${GCP_PUBSUB_TOPIC_STATUS}
