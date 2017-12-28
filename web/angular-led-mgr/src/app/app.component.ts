@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
     console.log("Spiking command:", theEvent);
 
     if(theEvent.source.checked) {
-      this.http.get('/pi/red/on').subscribe(data => {
+      this.http.get('https://pi-web-pubsub-py-be-dot-luca-paganelli-formazione.appspot.com/pi/red/on').subscribe(data => {
         // Read the result field from the JSON response.
         //this.results = data['results'];
         console.log("That's it: ", data);
@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
         });*/
       });
     } else {
-      this.http.get('/pi/red/off').subscribe(data => {
+      this.http.get('https://pi-web-pubsub-py-be-dot-luca-paganelli-formazione.appspot.com/pi/red/off').subscribe(data => {
         // Read the result field from the JSON response.
         //this.results = data['results'];
         console.log("That's it: ", data);
