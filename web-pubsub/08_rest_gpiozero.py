@@ -21,34 +21,43 @@ def index():
 @app.route('/piall/<led_state>')
 def piall(led_state):
  if led_state.lower() == "on":
-    publish_message(runargs.project, runargs.commands_topic_name,
+    publish_message(
+        runargs.project, runargs.commands_topic_name,
         '{"led_color":"red","action":"light-on"}',
         pubsub_client)
-    publish_message(runargs.project, runargs.commands_topic_name,
+    publish_message(
+        runargs.project, runargs.commands_topic_name,
         '{"led_color":"green","action":"light-on"}',
         pubsub_client)
-    publish_message(runargs.project, runargs.commands_topic_name,
+    publish_message(
+        runargs.project, runargs.commands_topic_name,
         '{"led_color":"light-bulb","action":"light-on"}',
         pubsub_client)
  elif led_state.lower() == "off":
-    publish_message(runargs.project, runargs.commands_topic_name,
+    publish_message(
+        runargs.project, runargs.commands_topic_name,
         '{"led_color":"red","action":"light-off"}',
         pubsub_client)
-    publish_message(runargs.project, runargs.commands_topic_name,
+    publish_message(
+        runargs.project, runargs.commands_topic_name,
         '{"led_color":"green","action":"light-off"}',
         pubsub_client)
-    publish_message(runargs.project, runargs.commands_topic_name,
+    publish_message(
+        runargs.project, runargs.commands_topic_name,
         '{"led_color":"light-bulb","action":"light-off"}',
         pubsub_client)
  else:
     print "Unknown LED STATE (" + led_state + "), defaulting to OFF"
-    publish_message(runargs.project, runargs.commands_topic_name,
+    publish_message(
+        runargs.project, runargs.commands_topic_name,
         '{"led_color":"red","action":"light-off"}',
         pubsub_client)
-    publish_message(runargs.project, runargs.commands_topic_name,
+    publish_message(
+        runargs.project, runargs.commands_topic_name,
         '{"led_color":"green","action":"light-off"}',
         pubsub_client)
-    publish_message(runargs.project, runargs.commands_topic_name,
+    publish_message(
+        runargs.project, runargs.commands_topic_name,
         '{"led_color":"light-bulb","action":"light-off"}',
         pubsub_client)
  return pistate(led_state, led_state, led_state)
@@ -64,14 +73,16 @@ def pitoggle():
 #@app.route('/pistate')
 def pistate(red_led_state, green_led_state, light_bulb_state):
     return jsonify({'result': 'OK', 'io_slots': [
-                    { 'position': GREEN_LED_NR, 'state': { 'value': green_led_state}}
-                    , { 'position': RED_LED_NR, 'state': { 'value': red_led_state}}]})
+                    { 'position': 'green_led', 'state': { 'value': green_led_state}}
+                    , { 'position': 'red_led', 'state': { 'value': red_led_state}}
+                    , { 'position': 'light_bulb', 'state': { 'value': light_bulb_state}}]})
 
 
 
 @app.route('/pi/<led_color>/<led_state>')
 def pi(led_color, led_state):
-    publish_message(runargs.project, runargs.commands_topic_name,
+    publish_message(
+        runargs.project, runargs.commands_topic_name,
         '{"led_color":"{}","action":"light-{}"}'.format(led_color, led_state),
         pubsub_client)
     return jsonify({'result': 'OK', 'led': { 'color': led_color.lower(), 'state': { 'value': led_state, 'default': 'False'}}})
