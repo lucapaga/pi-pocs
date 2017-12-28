@@ -5,6 +5,11 @@ import sys
 from google.cloud import pubsub_v1
 
 
+app = Flask(__name__)
+
+pubsub_client = None
+runargs = None
+
 def publish_message(project, topic_name, message, client):
     publisher = client #pubsub_v1.PublisherClient()
     topic_path = publisher.topic_path(project, topic_name)
@@ -14,13 +19,6 @@ def publish_message(project, topic_name, message, client):
     publisher.publish(topic_path, data=data)
 
     print('Published messages.')
-
-
-pubsub_client = None
-runargs = None
-
-app = Flask(__name__)
-
 
 @app.route('/')
 def index():
