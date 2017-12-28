@@ -1,0 +1,2 @@
+export PUBSUB_TOPIC=gpio_commands_topic
+npm start
