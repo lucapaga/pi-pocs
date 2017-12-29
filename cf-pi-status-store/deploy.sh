@@ -1,1 +1,1 @@
-gcloud beta functions deploy index --entry-point saveLedStatus --trigger-http
+gcloud beta functions deploy piSaveLedStatus --entry-point saveLedStatus --trigger-http
