@@ -1,0 +1,16 @@
+{
+  "name": "cf-pi-status-store",
+  "version": "1.0.0",
+  "description": "A Cloud Function that stores status messages from PI through PUB/SUB",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "author": "luca.paga@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/datastore": "^1.3.3",
+    "body-parser": "^1.18.2",
+    "uuid": "^3.1.0"
+  }
+}

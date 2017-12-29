@@ -1,0 +1,6 @@
+{
+	"position": "green_led",
+  "state":{
+    	"value": "on"
+  }
+}
